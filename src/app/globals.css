@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0e1a;
+  --surface: #0f1629;
+  --card: #141b2d;
+  --border: #1e2d4a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: #e2e8f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2d4a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2d3f5c;
+}
+
+/* Number formatting */
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Gain/Loss colors */
+.gain { color: #00e676; }
+.loss { color: #ff1744; }
+.neutral { color: #94a3b8; }
+
+/* Card glow effects */
+.card-gain { box-shadow: 0 0 20px rgba(0, 230, 118, 0.05); }
+.card-loss { box-shadow: 0 0 20px rgba(255, 23, 68, 0.05); }
+
+/* Signal badges */
+.signal-strong-buy {
+  background: rgba(0, 230, 118, 0.15);
+  color: #00e676;
+  border: 1px solid rgba(0, 230, 118, 0.3);
+}
+.signal-buy {
+  background: rgba(0, 200, 100, 0.1);
+  color: #00c864;
+  border: 1px solid rgba(0, 200, 100, 0.25);
+}
+.signal-neutral {
+  background: rgba(148, 163, 184, 0.1);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+.signal-sell {
+  background: rgba(255, 100, 50, 0.1);
+  color: #ff6432;
+  border: 1px solid rgba(255, 100, 50, 0.25);
+}
+.signal-strong-sell {
+  background: rgba(255, 23, 68, 0.15);
+  color: #ff1744;
+  border: 1px solid rgba(255, 23, 68, 0.3);
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #141b2d 25%, #1a2337 50%, #141b2d 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Recharts customization */
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}

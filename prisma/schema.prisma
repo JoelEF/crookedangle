@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Holding {
+  id        String   @id @default(cuid())
+  symbol    String
+  name      String
+  shares    Float
+  avgPrice  Float
+  currency  String   @default("USD")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  transactions Transaction[]
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  type      String   // BUY | SELL
+  symbol    String
+  shares    Float
+  price     Float
+  total     Float
+  date      DateTime
+  notes     String?
+  createdAt DateTime @default(now())
+
+  holding   Holding? @relation(fields: [holdingId], references: [id])
+  holdingId String?
+}
+
+model Alert {
+  id        String   @id @default(cuid())
+  symbol    String
+  name      String
+  condition String   // ABOVE | BELOW
+  price     Float
+  active    Boolean  @default(true)
+  triggered Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Watchlist {
+  id        String   @id @default(cuid())
+  symbol    String   @unique
+  name      String
+  addedAt   DateTime @default(now())
+}
